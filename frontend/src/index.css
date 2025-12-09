@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scroll & font tweaks */
+body {
+  background-color: #2C2C2C;
+  color: #F8EEDF;
+}
