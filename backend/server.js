@@ -1,9 +1,10 @@
+const serverless = require("serverless-http");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const productRoutes = require("./routes/productRoutes");
+const productRoutes = require("./routes/productRoutes"); // adjust path if needed
 
 const app = express();
 app.use(express.json());
@@ -15,5 +16,5 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use("/api/products", productRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;
+module.exports.handler = serverless(app); // required for Vercel
