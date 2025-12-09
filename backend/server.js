@@ -17,7 +17,10 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 app.use("/api/products", productRoutes);
 
-// Local server
-app.listen(5000, () => console.log("Server running at http://localhost:5000"));
+// Local server CONFIGURED
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+}
 
-module.exports = app; // Needed for Vercel
+module.exports = app; // export for serverless
